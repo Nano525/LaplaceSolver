@@ -249,9 +249,8 @@
 }
 
 .result-card p {
-  color: var(--text-strong);
-  font-family: var(--font-display);
-  line-height: 1.45;
+  color: var(--text-soft);
+  line-height: 1.6;
 }
 
 .result-card pre {
@@ -260,6 +259,131 @@
   word-break: break-word;
   color: var(--text-soft);
   font-family: var(--font-mono);
+}
+
+.math-expression {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.08rem;
+  margin-top: 10px;
+  padding: 18px 20px;
+  border: 1px solid rgba(174, 211, 255, 0.08);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 209, 102, 0.08), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.02));
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.7vw, 1.75rem);
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+.math-expression--placeholder {
+  display: block;
+  color: var(--text-soft);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.math-token {
+  white-space: pre-wrap;
+}
+
+.math-token--exp {
+  display: inline-flex;
+  align-items: flex-start;
+}
+
+.math-token--exp sup,
+.math-sup {
+  font-size: 0.68em;
+  line-height: 1;
+}
+
+.math-operator {
+  padding: 0 0.1em;
+  color: rgba(255, 209, 102, 0.96);
+}
+
+.math-operator--equals {
+  padding: 0 0.18em;
+}
+
+.math-space {
+  width: 0.32em;
+}
+
+.plot {
+  margin-top: 10px;
+  padding: 14px;
+  border: 1px solid rgba(174, 211, 255, 0.08);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at top, rgba(71, 215, 187, 0.08), transparent 36%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.02));
+}
+
+.plot--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+}
+
+.plot--empty p {
+  margin: 0;
+  max-width: 30ch;
+  text-align: center;
+}
+
+.plot__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.plot__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.plot__frame {
+  fill: rgba(5, 10, 20, 0.4);
+  stroke: rgba(174, 211, 255, 0.08);
+  rx: 16px;
+}
+
+.plot__axis {
+  stroke: rgba(174, 211, 255, 0.24);
+  stroke-width: 1.25;
+}
+
+.plot__zero {
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 1;
+  stroke-dasharray: 5 5;
+}
+
+.plot__line {
+  fill: none;
+  stroke: url(#plot-line-gradient);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.plot__label {
+  fill: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
 }
 
 @media (max-width: 1080px) {
@@ -280,6 +404,11 @@
 
   .field-row {
     grid-template-columns: 1fr;
+  }
+
+  .plot__meta {
+    align-items: start;
+    flex-direction: column;
   }
 
   .panel {

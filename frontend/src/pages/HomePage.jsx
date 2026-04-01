@@ -25,10 +25,6 @@ function HomePage() {
             <p className="workspace__eyebrow">LaplaceSolver</p>
             <h1>Resuelve ejercicios de laplace.</h1>
           </div>
-          <p className="workspace__summary">
-            Captura la ecuacion, define condiciones iniciales y prepara la
-            salida para el backend simbolico.
-          </p>
         </header>
 
         <div className="workspace__grid">

@@ -1,20 +1,28 @@
-import { buildApiPreview } from '../../utils/buildApiPreview.js'
+import MathExpression from './MathExpression.jsx'
+import SolutionPlot from './SolutionPlot.jsx'
 
 function ResultPanel({
   error,
-  form,
   isSolving,
   result,
   selectedExample,
   matchesKnownExample,
 }) {
-  const apiPreview = buildApiPreview(form)
   const transformText = result?.transformed_equation
   const algebraText = result?.algebraic_equation
   const solutionSText = result?.solution_s
   const solutionText = result?.solution_t
-  const graphSummary = result?.plot_points?.length
-    ? `${result.plot_points.length} puntos listos para graficar desde t=${result.plot_points[0].t} hasta t=${result.plot_points.at(-1).t}.`
+  const plotPoints = result?.plot_points ?? []
+  const transformExpression =
+    transformText || (matchesKnownExample ? selectedExample.transform : '')
+  const algebraExpression =
+    algebraText || (matchesKnownExample ? selectedExample.laplaceEquation : '')
+  const solutionSExpression =
+    solutionSText || (matchesKnownExample ? selectedExample.solutionS : '')
+  const solutionExpression =
+    solutionText || (matchesKnownExample ? selectedExample.solutionT : '')
+  const graphSummary = plotPoints.length
+    ? `${plotPoints.length} puntos evaluados para representar y(t) en la ventana de analisis.`
     : 'La API devolvera puntos para graficar cuando la solucion pueda evaluarse numericamente.'
 
   return (
@@ -35,52 +43,48 @@ function ResultPanel({
       <div className="result-stack">
         <article className="result-card">
           <span className="result-card__label">Transformada</span>
-          <p>
-            {transformText ||
-              (matchesKnownExample
-              ? selectedExample.transform
-              : 'Aqui aparecera la transformada de la ecuacion cuando el backend procese el ejercicio.')}
-          </p>
+          <MathExpression
+            expression={
+              transformExpression ||
+              'Aqui aparecera la transformada de la ecuacion cuando el backend procese el ejercicio.'
+            }
+            isPlaceholder={!transformExpression}
+          />
         </article>
 
         <article className="result-card">
           <span className="result-card__label">Ecuacion algebraica</span>
-          <p>
-            {algebraText ||
-              (matchesKnownExample
-              ? selectedExample.laplaceEquation
-              : 'El despeje algebraico del dominio s se mostrara en esta seccion.')}
-          </p>
+          <MathExpression
+            expression={
+              algebraExpression ||
+              'El despeje algebraico del dominio s se mostrara en esta seccion.'
+            }
+            isPlaceholder={!algebraExpression}
+          />
         </article>
 
         <article className="result-card">
           <span className="result-card__label">Solucion en Y(s)</span>
-          <p>
-            {solutionSText ||
-              (matchesKnownExample
-              ? selectedExample.solutionS
-              : 'La solucion en el dominio de Laplace se mostrara aqui.')}
-          </p>
+          <MathExpression
+            expression={solutionSExpression || 'La solucion en el dominio de Laplace se mostrara aqui.'}
+            isPlaceholder={!solutionSExpression}
+          />
         </article>
 
         <article className="result-card">
           <span className="result-card__label">Solucion final</span>
-          <p>
-            {solutionText ||
-              (matchesKnownExample
-              ? selectedExample.solutionT
-              : 'La solucion y(t) y su interpretacion visual apareceran aqui.')}
-          </p>
+          <MathExpression
+            expression={
+              solutionExpression || 'La solucion y(t) y su interpretacion visual apareceran aqui.'
+            }
+            isPlaceholder={!solutionExpression}
+          />
         </article>
 
         <article className="result-card">
           <span className="result-card__label">Grafica</span>
+          <SolutionPlot points={plotPoints} />
           <p>{graphSummary}</p>
-        </article>
-
-        <article className="result-card">
-          <span className="result-card__label">Payload sugerido</span>
-          <pre>{apiPreview}</pre>
         </article>
       </div>
     </section>
