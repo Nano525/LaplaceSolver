@@ -29,9 +29,6 @@ function ResultPanel({
           <p className="panel__eyebrow">Salida</p>
           <h2>Vista de resolucion</h2>
         </div>
-        <span className={`tag ${result ? '' : 'tag--muted'}`}>
-          {result ? 'Resuelto por API' : matchesKnownExample ? 'Caso reconocido' : 'Pendiente de backend'}
-        </span>
       </div>
 
       {error ? <div className="status-banner status-banner--error">{error}</div> : null}
