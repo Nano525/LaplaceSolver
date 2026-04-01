@@ -58,6 +58,9 @@ backend/env/
 backend/vendor/
 backend/site_packages/
 backend/wheelhouse/
+.pdf_tools/
+.pdf_site/
+.pdf_wheelhouse/
 
 # Jupyter
 .ipynb_checkpoints/
