@@ -1,0 +1,249 @@
+.page {
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.workspace {
+  width: min(1280px, 100%);
+  margin: 0 auto;
+}
+
+.workspace__header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.workspace__eyebrow,
+.panel__eyebrow,
+.result-card__label {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.workspace__header h1,
+.panel__header h2 {
+  margin: 8px 0 0;
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  letter-spacing: -0.04em;
+}
+
+.workspace__header h1 {
+  font-size: clamp(2.2rem, 4vw, 3.9rem);
+  line-height: 0.95;
+}
+
+.workspace__summary {
+  max-width: 34ch;
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.workspace__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 20px;
+}
+
+.workspace__column {
+  display: grid;
+  gap: 20px;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--panel);
+  box-shadow: var(--shadow-soft);
+  padding: 24px;
+}
+
+.panel--results {
+  min-height: 100%;
+}
+
+.panel__header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.panel__header--tight {
+  margin-bottom: 16px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 209, 102, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 209, 102, 0.08);
+  color: var(--text-strong);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.tag--muted {
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.field {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.field span {
+  color: var(--text-soft);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(5, 10, 20, 0.74);
+  color: var(--text-strong);
+  font: inherit;
+  resize: vertical;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.field textarea {
+  min-height: 132px;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  outline: none;
+  border-color: rgba(255, 209, 102, 0.44);
+  box-shadow: 0 0 0 4px rgba(255, 209, 102, 0.08);
+}
+
+.example-list {
+  display: grid;
+  gap: 12px;
+}
+
+.example-card {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-soft);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.example-card:hover {
+  transform: translateY(-1px);
+  border-color: var(--line-strong);
+}
+
+.example-card strong {
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+}
+
+.example-card--active {
+  border-color: rgba(255, 209, 102, 0.3);
+  background: rgba(255, 209, 102, 0.06);
+}
+
+.example-card__meta {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.result-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.result-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 16px 18px;
+}
+
+.result-card p,
+.result-card pre {
+  margin: 8px 0 0;
+}
+
+.result-card p {
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  line-height: 1.45;
+}
+
+.result-card pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+}
+
+@media (max-width: 1080px) {
+  .workspace__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 780px) {
+  .page {
+    padding: 16px;
+  }
+
+  .workspace__header {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    padding: 18px;
+    border-radius: 20px;
+  }
+}
