@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { solverExamples } from '../data/solverExamples.js'
+import { solveDifferentialEquation } from '../services/solverApi.js'
 
 const initialExample = solverExamples[1]
 
@@ -11,6 +12,9 @@ export function useSolverForm() {
     y0: initialExample.y0,
     y1: initialExample.y1,
   })
+  const [result, setResult] = useState(null)
+  const [isSolving, setIsSolving] = useState(false)
+  const [error, setError] = useState('')
 
   const selectedExample =
     solverExamples.find((example) => example.id === selectedId) ??
@@ -39,6 +43,8 @@ export function useSolverForm() {
         [field]: value,
       }
     })
+    setResult(null)
+    setError('')
   }
 
   const loadExample = (example) => {
@@ -49,14 +55,35 @@ export function useSolverForm() {
       y0: example.y0,
       y1: example.y1,
     })
+    setResult(null)
+    setError('')
+  }
+
+  const solveCurrentProblem = async () => {
+    setIsSolving(true)
+    setError('')
+
+    try {
+      const nextResult = await solveDifferentialEquation(form)
+      setResult(nextResult)
+    } catch (nextError) {
+      setResult(null)
+      setError(nextError.message || 'No se pudo resolver la ecuacion.')
+    } finally {
+      setIsSolving(false)
+    }
   }
 
   return {
     examples: solverExamples,
+    error,
     form,
+    isSolving,
+    result,
     selectedExample,
     matchesKnownExample,
     handleFieldChange,
     loadExample,
+    solveCurrentProblem,
   }
 }

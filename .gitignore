@@ -55,6 +55,9 @@ env/
 backend/.venv/
 backend/venv/
 backend/env/
+backend/vendor/
+backend/site_packages/
+backend/wheelhouse/
 
 # Jupyter
 .ipynb_checkpoints/

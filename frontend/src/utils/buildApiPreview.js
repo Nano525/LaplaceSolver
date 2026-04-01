@@ -1,5 +1,5 @@
-export function buildApiPreview(form) {
-  const payload = {
+export function buildSolvePayload(form) {
+  return {
     equation: form.equation || '',
     order: Number(form.order),
     initial_conditions:
@@ -7,6 +7,8 @@ export function buildApiPreview(form) {
         ? { y0: form.y0 || '0', y1: form.y1 || '0' }
         : { y0: form.y0 || '0' },
   }
+}
 
-  return JSON.stringify(payload, null, 2)
+export function buildApiPreview(form) {
+  return JSON.stringify(buildSolvePayload(form), null, 2)
 }

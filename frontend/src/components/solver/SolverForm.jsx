@@ -1,4 +1,4 @@
-function SolverForm({ form, onFieldChange }) {
+function SolverForm({ form, isSolving, onFieldChange, onSolve }) {
   return (
     <section className="panel">
       <div className="panel__header">
@@ -51,6 +51,12 @@ function SolverForm({ form, onFieldChange }) {
             />
           </label>
         ) : null}
+      </div>
+
+      <div className="panel__actions">
+        <button className="solve-button" onClick={onSolve} type="button">
+          {isSolving ? 'Resolviendo...' : 'Resolver ejercicio'}
+        </button>
       </div>
     </section>
   )

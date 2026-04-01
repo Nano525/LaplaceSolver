@@ -6,11 +6,15 @@ import { useSolverForm } from '../hooks/useSolverForm.js'
 function HomePage() {
   const {
     examples,
+    error,
     form,
+    isSolving,
+    result,
     selectedExample,
     matchesKnownExample,
     handleFieldChange,
     loadExample,
+    solveCurrentProblem,
   } = useSolverForm()
 
   return (
@@ -29,7 +33,12 @@ function HomePage() {
 
         <div className="workspace__grid">
           <div className="workspace__column">
-            <SolverForm form={form} onFieldChange={handleFieldChange} />
+            <SolverForm
+              form={form}
+              isSolving={isSolving}
+              onFieldChange={handleFieldChange}
+              onSolve={solveCurrentProblem}
+            />
             <ExampleList
               examples={examples}
               selectedId={selectedExample.id}
@@ -38,7 +47,10 @@ function HomePage() {
           </div>
 
           <ResultPanel
+            error={error}
             form={form}
+            isSolving={isSolving}
+            result={result}
             selectedExample={selectedExample}
             matchesKnownExample={matchesKnownExample}
           />

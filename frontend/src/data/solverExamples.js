@@ -9,6 +9,7 @@ export const solverExamples = [
     y1: '',
     transform: "L{y'(t)} + 2L{y(t)} = 0",
     laplaceEquation: 'sY(s) - 1 + 2Y(s) = 0',
+    solutionS: 'Y(s) = 1 / (s + 2)',
     solutionT: 'y(t) = e^(-2t)',
   },
   {
@@ -21,6 +22,7 @@ export const solverExamples = [
     y1: '1',
     transform: "L{y''(t)} + 3L{y'(t)} + 2L{y(t)} = 0",
     laplaceEquation: 's^2Y(s) - 1 + 3sY(s) + 2Y(s) = 0',
+    solutionS: 'Y(s) = 1 / (s^2 + 3s + 2)',
     solutionT: 'y(t) = e^(-t) - e^(-2t)',
   },
   {
@@ -33,6 +35,7 @@ export const solverExamples = [
     y1: '',
     transform: "L{y'(t)} - L{y(t)} = L{e^t}",
     laplaceEquation: 'sY(s) - 1 - Y(s) = 1 / (s - 1)',
+    solutionS: 'Y(s) = s / (s - 1)^2',
     solutionT: 'y(t) = e^t(1 + t)',
   },
   {
@@ -45,6 +48,7 @@ export const solverExamples = [
     y1: '0',
     transform: "L{y''(t)} + L{y(t)} = L{sin(t)}",
     laplaceEquation: 's^2Y(s) + Y(s) = 1 / (s^2 + 1)',
+    solutionS: 'Y(s) = 1 / (s^2 + 1)^2',
     solutionT: 'y(t) = (sin(t) - t cos(t)) / 2',
   },
 ]
