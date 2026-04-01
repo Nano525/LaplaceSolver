@@ -13,6 +13,7 @@ from app.utils.equation_parser import (
     parse_differential_equation,
     parse_initial_value,
 )
+from app.utils.math_formatter import format_math_output
 
 
 def solve_laplace_problem(payload: SolveRequest) -> SolveResponse:
@@ -59,12 +60,12 @@ def solve_laplace_problem(payload: SolveRequest) -> SolveResponse:
     )
 
     return SolveResponse(
-        normalized_equation=str(parsed_problem.equation),
+        normalized_equation=format_math_output(parsed_problem.equation),
         detected_order=detected_order,
-        transformed_equation=str(transformed_equation),
-        algebraic_equation=str(algebraic_equation),
-        solution_s=str(solution_s),
-        solution_t=str(solution_t),
+        transformed_equation=format_math_output(transformed_equation),
+        algebraic_equation=format_math_output(algebraic_equation),
+        solution_s=format_math_output(solution_s),
+        solution_t=format_math_output(solution_t),
         plot_points=_generate_plot_points(solution_t, parsed_problem.t),
     )
 
