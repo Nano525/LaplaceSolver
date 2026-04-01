@@ -21,9 +21,6 @@ function ResultPanel({
     solutionSText || (matchesKnownExample ? selectedExample.solutionS : '')
   const solutionExpression =
     solutionText || (matchesKnownExample ? selectedExample.solutionT : '')
-  const graphSummary = plotPoints.length
-    ? `${plotPoints.length} puntos evaluados para representar y(t) en la ventana de analisis.`
-    : 'La API devolvera puntos para graficar cuando la solucion pueda evaluarse numericamente.'
 
   return (
     <section className="panel panel--results">
@@ -84,7 +81,6 @@ function ResultPanel({
         <article className="result-card">
           <span className="result-card__label">Grafica</span>
           <SolutionPlot points={plotPoints} />
-          <p>{graphSummary}</p>
         </article>
       </div>
     </section>
