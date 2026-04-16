@@ -1,8 +1,10 @@
 import MathExpression from './MathExpression.jsx'
 import SolutionPlot from './SolutionPlot.jsx'
+import { exportSolverPdf } from '../../utils/exportSolverPdf.js'
 
 function ResultPanel({
   error,
+  form,
   isSolving,
   result,
   selectedExample,
@@ -29,6 +31,15 @@ function ResultPanel({
           <p className="panel__eyebrow">Salida</p>
           <h2>Vista de resolucion</h2>
         </div>
+        {result ? (
+          <button
+            className="export-button"
+            onClick={() => exportSolverPdf({ form, result })}
+            type="button"
+          >
+            Exportar a PDF
+          </button>
+        ) : null}
       </div>
 
       {error ? <div className="status-banner status-banner--error">{error}</div> : null}
